@@ -1,49 +1,67 @@
 <template>
-    <div :class="[$style.sidebar,'p-3','mb-5']">
-        <h5 class="text-center">
-            Categories
-        </h5>
-        <ul class="nav flex-column mb4">
-            <li class="nav-item">
-                <a
-                    class="nav-link"
-                    href="/"
-                >All Products</a>
-            </li>
+    <div :class="[this.$style.component, 'p-3', 'mb-5']">
+        <div v-show="!collapsed">
+            <h5 class="text-center">
+                Categories
+            </h5>
+            <ul class="nav flex-column mb4">
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="/"
+                    >All Products</a>
+                </li>
 
-            <li
-                v-for="(category, index) in categories"
-                :key="index"
-                class="nav-item"
-            >
-                <a
-                    class="nav-link"
-                    :href="category.link"
+                <li
+                    v-for="(category, index) in categories"
+                    :key="index"
+                    class="nav-item"
                 >
-                  {{ category.name }}
-                </a>
-            </li>
-        </ul>
+                    <a
+                        class="nav-link"
+                        :href="category.link"
+                    >
+                        {{ category.name }}
+                    </a>
+                </li>
+            </ul>
+
+            <hr>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button
+                class="btn btn-secondary btn-sm"
+                @click="$emit('toggle-collapsed')"
+                v-text="collapsed ? '>>' : '<< Collapse'"
+            />
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Sidebar',
-  data() {
-      return {
-        categories: [
-          {
-            name: 'Dot Matrix Printers',
-            link: '#',
-          },
-          {
-            name: 'Flopy data',
-            link: '#',
-          }
-        ],
-      }
-  }
+    props: {
+        collapsed: {
+            type: Boolean,
+            required: true,
+        },
+    },
+    data() {
+        return {
+            categories: [
+                {
+                    name: 'Dot Matrix Printers',
+                    link: '#',
+                },
+                {
+                    name: 'Flopy data',
+                    link: '#',
+                },
+            ],
+        };
+    },
 };
 
 </script>
@@ -51,7 +69,7 @@ export default {
 <style lang="scss" module>
 @import '~styles/components/light-component';
 
-.sidebar {
+.component {
   @include light-component;
 
   ul {
