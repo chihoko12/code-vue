@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import ProductCard from '@/components/product-list/product-card';
 import Loading from '@/components/loading';
+import ProductCard from '@/components/product-list/product-card';
 
 export default {
     name: 'ProductList',
