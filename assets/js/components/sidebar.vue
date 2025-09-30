@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import { fetchCategogies, fetchCategories } from '@/services/categories-service';
 import Loading from '@/components/loading';
 
 export default {
